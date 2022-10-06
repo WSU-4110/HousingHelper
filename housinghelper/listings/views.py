@@ -35,4 +35,12 @@ def createlisting(request):
             }
     return render(request, 'listings/listing_form.html', context)
 
+def deletelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.delete()
+    return redirect('/')
+
+
+
+
 
