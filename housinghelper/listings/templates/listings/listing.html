@@ -1,8 +1,26 @@
-{% extends 'main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse House Listings</title>
+</head>
+<body>
+    {% extends 'main.html' %}
 
 
 {% block content %}
 
-<h1>{{ listings.title }}</h1>
-
+<h1>{{ listing }}</h1> <br>
+<text>Price: ${{ listing.price }}</text> <br>
+<text>Bathrooms:{{ listing.bathrooms }}</text> <br>
+<text>Bedrooms: {{ listing.bedrooms }}</text> <br>
+<text>Garage: {{ listing.garage }}</text> <br>
+<text>Area {{ listing.sqft}}ft<sup>2</sup></text> <br>
+<text>Lot Size: {{ listing.lot_size }}</text> <br>
+<text>House Description:{{ listing.description }}</text> <br>
 {% endblock %}
+
+</body>
+</html>
