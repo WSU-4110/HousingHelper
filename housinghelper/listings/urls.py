@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -7,4 +9,5 @@ urlpatterns = [
     path('listing/<int:pk>/', views.listing, name='listing'),
     path('createlisting/', views.createlisting, name='createlisting'),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
+    path('browselisting/', views.browselisting, name='browselisting'),
 ]

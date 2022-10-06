@@ -4,16 +4,11 @@
 <h1> index page</h1>
 
 <a href="{% url 'createlisting' %}">create listing</a>
+<a href="{% url 'browselisting' %}">browse listing</a>
 
 
 
-{% for listings in listings %}
 
-<h2>{{ listings.title }}</h2>
-<p>{{ listings.description }}</p>
-<a href="{% url 'listing' listings.pk %}">more info</a>
-
-{% endfor %}
 
 
 {% endblock %}
