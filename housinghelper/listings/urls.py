@@ -8,5 +8,6 @@ urlpatterns = [
     #path('listings', views.listings, name='listings'),
     path('listing/<int:pk>/', views.listing, name='listing'),
     path('createlisting/', views.createlisting, name='createlisting'),
+    path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
     path('browselisting/', views.browselisting, name='browselisting'),
 ]

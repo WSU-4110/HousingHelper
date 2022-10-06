@@ -2,7 +2,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from .models import Listing
-from .forms import ListingForm
+from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
 
 def index(request):
@@ -41,4 +41,13 @@ def browselisting(request):
 
 
 
-
+def calcmortgage(request):
+    form = TestForm()
+    if request.method == 'POST':
+        form = TestForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            print(cd)
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'listings/calc_form.html', context)
