@@ -11,6 +11,7 @@ urlpatterns = [
     #path('listings', views.listings, name='listings'),
     path('listing/<int:pk>/', views.listing, name='listing-detail'),
     path('createlisting/', views.createlisting, name='createlisting'),
+    path('updatelisting<int:pk>/', views.updatelisting, name='updatelisting'),
     path('listing/<pk>/delete/', deletelisting),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
     path('browselisting/', views.browselisting, name='browselisting'),
