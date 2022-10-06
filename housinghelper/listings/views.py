@@ -35,4 +35,17 @@ def createlisting(request):
             }
     return render(request, 'listings/listing_form.html', context)
 
-
+def updatelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    form = ListingForm(instance = listing)
+    if request.method == 'POST':
+        form = ListingForm(request.POST, instance = listing)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'listings/updatelisting.html', context)
+    context = {
+        'form': form
+            }
+    return render(request, 'listings/updatelisting.html', context)

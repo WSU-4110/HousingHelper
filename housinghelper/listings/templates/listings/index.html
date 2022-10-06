@@ -11,7 +11,7 @@
 
 <h2>{{ listings.title }}</h2>
 <p>{{ listings.description }}</p>
-<a href="{% url 'listing' listings.pk %}">more info</a>
+<a href="{% url 'updatelisting' listings.pk %}">update</a>
 
 {% endfor %}
 
