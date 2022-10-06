@@ -38,6 +38,14 @@ def browselisting(request):
     return render(request, 'listings/browse_houses.html', {'all':all_listings})
    
 
+def deletelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.delete()
+    return redirect('/')
+
+
+
+
 
 
 
