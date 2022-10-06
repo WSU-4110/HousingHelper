@@ -30,9 +30,15 @@ def createlisting(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'listings/listing_form.html', context)
-    context = {
-        'form': form
-            }
-    return render(request, 'listings/listing_form.html', context)
+    
+def browselisting(request):
+    
+    all_listings=Listing.objects.all
+
+    return render(request, 'listings/browse_houses.html', {'all':all_listings})
+   
+
+
+
 
 
