@@ -20,6 +20,8 @@
 <text>Area {{ listing.sqft}}ft<sup>2</sup></text> <br>
 <text>Lot Size: {{ listing.lot_size }}</text> <br>
 <text>House Description:{{ listing.description }}</text> <br>
+
+<a href="{% url 'updatelisting' listing.pk %}">update</a>
 {% endblock %}
 
 </body>

@@ -12,7 +12,8 @@
 <h2>{{ item.title }}</h2>
 <h3>${{ item.price }}</h3>
 
-<a target="_blank" href="{% url 'listing' item.pk %}">more info</a>
+<a href="{% url 'updatelisting' item.pk %}">update</a>
+<a target="_blank" href="{% url 'listing-detail' item.pk %}">more info</a>
 
 {% endfor %}
 
