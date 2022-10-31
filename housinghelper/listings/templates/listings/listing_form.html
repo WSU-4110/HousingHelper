@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>
-	<form method="POST" action="">
+	<form class="w-full max-w-lg" method="POST" action="">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" value="Submit">
