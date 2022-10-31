@@ -4,7 +4,7 @@ from . import views
 from .views import deletelisting
 
 from django.conf import settings
-
+from .views import SearchResultsView, HomePageView
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -15,4 +15,7 @@ urlpatterns = [
     path('listing/<pk>/delete/', deletelisting),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
     path('browselisting/', views.browselisting, name='browselisting'),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('home/', HomePageView.as_view(), name='home'),
+
 ]

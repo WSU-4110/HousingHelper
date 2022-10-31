@@ -1,0 +1,10 @@
+<h1>Search Results</h1>
+
+<ul>
+  {% for listing in object_list %}
+    <li>
+	    {{ listing.title }}, {{ listing.description }}
+    </li>
+  {% endfor %}
+</ul>
+
