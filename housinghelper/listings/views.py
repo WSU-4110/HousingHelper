@@ -4,6 +4,12 @@ from django.http import HttpResponse
 from .models import Listing
 from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, TemplateView
+from django.db.models import Q # new
+
+
+def home(request):
+    return render(request, 'home.html')
 
 def index(request):
     listings = Listing.objects.all()
@@ -61,6 +67,19 @@ def updatelisting(request, pk):
     return render(request, 'listings/updatelisting.html', context)
 
 
+
+class SearchResultsView(ListView):
+    model = Listing
+    template_name = 'listings/search_results.html'
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Listing.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
+
+class HomePageView(TemplateView):
+    template_name = 'home.html'
 
 
 def calcmortgage(request):
