@@ -1,4 +1,4 @@
-from django.shortcuts import render
+rom django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from .models import Listing
@@ -58,6 +58,9 @@ def valid_form(request):
         if form.is_valid():
             form.save()
             return redirect('/')
+    else:
+        form = ListingForm()
+    return form
  
 
 
