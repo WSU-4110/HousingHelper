@@ -26,6 +26,9 @@ def listing(request, pk):
     }
     return render(request, 'listings/listing.html', context)
 
+
+
+# Transforming the createlisting function to use the factory method
 def createlisting(request):
     form = ListingForm()
 
@@ -36,7 +39,30 @@ def createlisting(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'listings/listing_form.html', context)
-    
+
+
+
+# implement the createlisting function using the factory method
+
+def createlisting(request):
+    form = ListingForm()
+
+    valid_form(request)
+    context = {'form': form}
+    return render(request, 'listings/listing_form.html', context)
+
+
+def valid_form(request):
+    if request.method == 'POST':
+        form = ListingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+ 
+
+
+
+
 def browselisting(request):
     
     all_listings=Listing.objects.all
