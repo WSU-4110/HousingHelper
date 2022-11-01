@@ -8,12 +8,20 @@
 
 
 {% for item in all %}
+<br>
+{% if item.image %}
 
+<img src="{{ item.image.url }}" width="500px">
+
+{%endif%}
 <h2>{{ item.title }}</h2>
 <h3>${{ item.price }}</h3>
 
 <a href="{% url 'updatelisting' item.pk %}">update</a>
 <a target="_blank" href="{% url 'listing-detail' item.pk %}">more info</a>
+
+
+<br>
 
 {% endfor %}
 

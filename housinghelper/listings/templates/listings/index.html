@@ -1,26 +1,11 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1> index page</h1>
+<img src="../../../media/logo.jpg" width="10%">
+<h1> Home Page</h1>
 
 <a href="{% url 'createlisting' %}">create listing</a>
 <a href="{% url 'browselisting' %}">browse listing</a>
-
-
-{% for listings in listings %}
-
-<h2>{{ listings.title }}</h2>
-
-
-
-<p>{{ listings.description }}</p>
-
-
-<a target="_blank" href="{% url 'listing-detail' listings.pk %}">more info</a>
-<a href="{% url 'updatelisting' listings.pk %}">update</a>
-
-{% endfor %}
-
 
 
 
