@@ -7,10 +7,35 @@ from django.shortcuts import render, redirect
 
 def index(request):
     listings = Listing.objects.all()
-    context = {
-        'listings': listings
-    }
-    return render(request, 'listings/index.html', context)
+    listingsList=[]
+    listing_iterator_object=ListingIterator(listings.__dict__)
+
+    while (True):
+        try:
+            listingsList.append(listing_iterator_object.__next__())
+        except:
+            break
+
+    
+    return render(request, 'listings/index.html', listingsList)
+
+
+class ListingIterator:
+    current=0
+    def __init__(self, Listing):
+        self.Listing=Listing
+
+    def __iter__(self):
+        return self
+
+    def __next__(self,Listing):
+        current=+1
+        return Listing[current]
+
+
+
+    
+
 
 
 def listing(request, pk):
