@@ -1,0 +1,26 @@
+
+<!-- templates/home.html -->
+{% extends 'main.html' %}
+
+{% block content %}
+<img src="../../../media/logo.jpg" width="10%">
+<h1> Home Page</h1>
+
+<a href="{% url 'createlisting' %}">create listing</a> <br>
+
+<a href="{% url 'browselisting' %}">browse listing</a><br>
+ 
+<a href="{% url 'home' %}">Search listing</a> <br>
+
+<h1>Search Listings</h1>
+<br>
+
+<h1>HomePage</h1>
+
+<form action="{% url 'search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+
+
+{%endblock%}
