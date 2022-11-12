@@ -30,6 +30,7 @@ def createlisting(request):
     form = ListingForm()
 
     if request.method == 'POST':
+        form = ListingForm(request.POST)
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -61,10 +62,7 @@ def updatelisting(request, pk):
             return redirect('/')
     context = {'form': form}
     return render(request, 'listings/updatelisting.html', context)
-    context = {
-        'form': form
-            }
-    return render(request, 'listings/updatelisting.html', context)
+   
 
 
 
@@ -79,7 +77,7 @@ class SearchResultsView(ListView):
         return object_list
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'search_listing.html'
 
 
 def calcmortgage(request):
