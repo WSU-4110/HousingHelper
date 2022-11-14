@@ -43,24 +43,29 @@ def deletelisting(request, pk):
     listing.delete()
     return redirect('/')
 
-
-
+#Factory method
 def updatelisting(request, pk):
     listing = Listing.objects.get(id=pk)
     form = ListingForm(instance = listing)
+    check(request, pk)
+    context = {
+    'form' : form
+    }
+    return render(request, 'listings/updatelisting.html', context)
+
+
+    
+def check(request, pk):
     if request.method == 'POST':
+        listing = Listing.objects.get(id=pk)
         form = ListingForm(request.POST, instance = listing)
         if form.is_valid():
             form.save()
             return redirect('/')
-    context = {'form': form}
-    return render(request, 'listings/updatelisting.html', context)
-    context = {
-        'form': form
-            }
-    return render(request, 'listings/updatelisting.html', context)
-
-
+        else:
+            listing = Listing.objects.get(id=pk)
+            form = ListingForm(instance = listing)
+            return form
 
 
 def calcmortgage(request):
