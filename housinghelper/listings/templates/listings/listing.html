@@ -12,7 +12,7 @@
 
 {% block content %}
 
-<h1>{{ listing }}</h1> <br>
+<h1>{{ listing }}</h1> <br> <h4>{{listing.choice}}</h4>
 <text>Price: ${{ listing.price }}</text> <br>
 <text>Bathrooms:{{ listing.bathrooms }}</text> <br>
 <text>Bedrooms: {{ listing.bedrooms }}</text> <br>
@@ -20,6 +20,16 @@
 <text>Area {{ listing.sqft}}ft<sup>2</sup></text> <br>
 <text>Lot Size: {{ listing.lot_size }}</text> <br>
 <text>House Description:{{ listing.description }}</text> <br>
+
+<!-- present image -->
+{% if listing.image %}
+<img src="{{ listing.image.url }}" width="500px">
+{%endif%}
+<br>
+
+
+
+<a href="{% url 'updatelisting' listing.pk %}">update</a>
 {% endblock %}
 
 </body>

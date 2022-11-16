@@ -4,6 +4,12 @@ from django.http import HttpResponse
 from .models import Listing
 from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, TemplateView
+from django.db.models import Q # new
+
+
+def home(request):
+    return render(request, 'home.html')
 
 def index(request):
     listings = Listing.objects.all()
@@ -25,6 +31,7 @@ def createlisting(request):
 
     if request.method == 'POST':
         form = ListingForm(request.POST)
+        form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -38,7 +45,39 @@ def browselisting(request):
     return render(request, 'listings/browse_houses.html', {'all':all_listings})
    
 
+def deletelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.delete()
+    return redirect('/')
 
+
+
+def updatelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    form = ListingForm(instance = listing)
+    if request.method == 'POST':
+        form = ListingForm(request.POST, instance = listing)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'listings/updatelisting.html', context)
+   
+
+
+
+class SearchResultsView(ListView):
+    model = Listing
+    template_name = 'listings/search_results.html'
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Listing.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
+
+class HomePageView(TemplateView):
+    template_name = 'search_listing.html'
 
 
 def calcmortgage(request):

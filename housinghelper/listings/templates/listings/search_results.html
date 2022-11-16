@@ -1,0 +1,26 @@
+
+
+{% block content %}
+<img src="../../../media/logo.jpg" width="10%">
+<h1> Home Page</h1>
+
+<a href="{% url 'createlisting' %}">create listing</a>
+<a href="{% url 'browselisting' %}">browse listing</a>
+<a href="{% url 'home' %}">Search listing</a>
+
+<h1>Search Results</h1>
+
+<ul>
+  {% for listing in object_list %}
+    <li>
+      {% if listing.image %}
+
+        <img src="{{ listing.image.url }}" width="30%"><br>
+      {%endif%}
+	    {{ listing.title }}, {{ listing.description }}
+    </li>
+  {% endfor %}
+</ul>
+
+
+{% endblock %}
