@@ -9,7 +9,7 @@ from .views import SearchResultsView, HomePageView
 urlpatterns = [
     path('', views.index, name='index'),
     #path('listings', views.listings, name='listings'),
-    path('listing/<int:pk>/', views.listing, name='listing-detail'),
+    path('listing/<int:pk>/', views.listing, name='listing'),
     path('createlisting/', views.createlisting, name='createlisting'),
     path('updatelisting<int:pk>/', views.updatelisting, name='updatelisting'),
     path('listing/<pk>/delete/', deletelisting),

@@ -19,7 +19,7 @@
 
     <div class="max-w-4xl mx-auto">
      {% if listings.image %} 
-      <a href="{% url 'listing-detail' listings.pk %}"> <img  class="x1h-auto rounded-lg w-full h-100 object-cover"
+      <a href="{% url 'listing' listings.pk %}"> <img  class="x1h-auto rounded-lg w-full h-100 object-cover"
       src="{{ listings.image.url }}" alt="profile picture"> </a>
       {%endif%} 
   </div>
