@@ -6,7 +6,7 @@ import calculation
 class ListingForm(ModelForm):
     class Meta:
         model = Listing
-        fields = ('title', 'description', 'price', 'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size')
+        fields = ('title', 'description', 'price', 'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size','image','choice')
 
 
 class TestForm(forms.Form):
