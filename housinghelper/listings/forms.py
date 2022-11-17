@@ -10,13 +10,10 @@ class ListingForm(ModelForm):
 
 
 class TestForm(forms.Form):
-    quantity = forms.DecimalField()
+    down_payment = forms.DecimalField()
     price = forms.DecimalField()
+    interest_rate = forms.DecimalField()
+    term = forms.IntegerField()
     amount = forms.DecimalField(
-        widget=calculation.FormulaInput('quantity*price') # <- using single math expression
-    )
-    apply_taxes = forms.BooleanField(initial=True)
-    tax = forms.DecimalField(
-        # using math expression and javascript functions.
-        widget=calculation.FormulaInput('apply_taxes ? parseFloat(amount/11).toFixed(2) : 0.0') 
+        widget=calculation.FormulaInput('(down_payment*price)/(term*interest_rate)') # <- using single math expression
     )

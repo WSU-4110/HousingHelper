@@ -1,12 +1,13 @@
 {% extends 'main.html' %}
-
+{% load tailwind_filters %}
+{% load static %}
 {% block content %}
 
 <div>
 	<form class="w-full max-w-lg" method="POST" action="" enctype="multipart/form-data">
 
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 		<input type="submit" value="Submit">
 	</form>
 </div>
