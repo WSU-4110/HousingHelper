@@ -13,7 +13,7 @@ urlpatterns = [
     path('createlisting/', views.createlisting, name='createlisting'),
     path('updatelisting<int:pk>/', views.updatelisting, name='updatelisting'),
     path('favorite<int:pk>/', views.favorite, name='favorite'),
-    path('listing/<pk>/delete/', deletelisting),
+    path('listing/<pk>/delete/', views.deletelisting, name="deletelisting"),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
     path('browselisting/', views.browselisting, name='browselisting'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
