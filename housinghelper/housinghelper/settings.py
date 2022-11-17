@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'listings.apps.ListingsConfig',
     'calculation',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
