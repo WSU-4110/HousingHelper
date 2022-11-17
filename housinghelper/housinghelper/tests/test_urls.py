@@ -41,6 +41,7 @@ class TestUrls(SimpleTestCase):
     def test_home(self):
         url = reverse('home')
         self.assertEquals(resolve(url).func.view_class, HomePageView)
+        print(resolve(url))
 
 
     
