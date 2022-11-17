@@ -5,6 +5,7 @@ from .models import Listing
 from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
 from .filters import ListingFilter
+from .filters import ListingFilter
 
 from django.views.generic import ListView, TemplateView
 from django.db.models import Q # new
@@ -46,17 +47,19 @@ def createlisting(request):
     
 def browselisting(request):
     
-    all_listings=Listing.objects.all
-
-    return render(request, 'listings/browse_houses.html', {'all':all_listings})
+    all_listings=Listing.objects.all()
+    listing_filter = ListingFilter(request.GET, queryset=all_listings)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/browse_houses.html', context)
+ 
    
 
 def deletelisting(request, pk):
     listing = Listing.objects.get(id=pk)
     listing.delete()
     return redirect('/')
-
-
 
 
 def updatelisting(request, pk):
@@ -66,7 +69,7 @@ def updatelisting(request, pk):
         form = ListingForm(request.POST, instance = listing)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/browselisting')
     context = {'form': form}
     return render(request, 'listings/updatelisting.html', context)
    
