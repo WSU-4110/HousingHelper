@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1> Browse All House Listings page</h1>
+
+<a href="{% url 'createlisting' %}">create listing</a>
+
+
+
+{% for item in all %}
+
+<h2>{{ item.title }}</h2>
+<h3>${{ item.price }}</h3>
+
+<a target="_blank" href="{% url 'listing' item.pk %}">more info</a>
+
+{% endfor %}
+
+
+{% endblock %}

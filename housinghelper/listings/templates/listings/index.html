@@ -19,6 +19,7 @@
 </form>
 <p></p>
 <a href="{% url 'createlisting' %}">create listing</a>
+<a href="{% url 'browselisting' %}">browse listing</a>
 
 {% for listings in listing_filter.qs %}
 
@@ -30,9 +31,16 @@
 <input type = "submit" value = "Favorite" >
 </form>
 <p>{{ listings.description }}</p>
+
+
+
 <a href="{% url 'updatelisting' listings.pk %}">update</a>
 
 {% endfor %}
+
+
+
+
 
 
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from .models import Listing
-from .forms import ListingForm
+from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
 from .filters import ListingFilter
 
@@ -32,10 +32,20 @@ def createlisting(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'listings/listing_form.html', context)
-    context = {
-        'form': form
-            }
-    return render(request, 'listings/listing_form.html', context)
+    
+def browselisting(request):
+    
+    all_listings=Listing.objects.all
+
+    return render(request, 'listings/browse_houses.html', {'all':all_listings})
+   
+
+def deletelisting(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.delete()
+    return redirect('/')
+
+
 
 
 def updatelisting(request, pk):
@@ -52,6 +62,20 @@ def updatelisting(request, pk):
         'form': form
             }
     return render(request, 'listings/updatelisting.html', context)
+
+
+
+
+def calcmortgage(request):
+    form = TestForm()
+    if request.method == 'POST':
+        form = TestForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            print(cd)
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'listings/calc_form.html', context)
 
 
 #favorites comes after user authentication
