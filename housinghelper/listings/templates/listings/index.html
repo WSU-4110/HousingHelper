@@ -3,13 +3,32 @@
 {% block content %}
 <h1> index page</h1>
 
+<h4>Filter houses</h4>
+
+<form method="get"> 
+  <fieldset>
+    <legend>Fields:</legend>
+    <label for="fname">Enter your filtering criteria</label><br>
+    <p></p>
+    <!--Filtering List -->
+    {{ listing_filter.form }}
+</div>
+    
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+<p></p>
 <a href="{% url 'createlisting' %}">create listing</a>
 
+{% for listings in listing_filter.qs %}
 
-
-{% for listings in listings %}
-
-<h2>{{ listings.title }}</h2>
+<!--Favorites button -->
+<form action="" method = "post">
+  {% csrf_token %}
+  <!--House listings -->
+<h2>{{ listings.title }}</h2> 
+<input type = "submit" value = "Favorite" >
+</form>
 <p>{{ listings.description }}</p>
 <a href="{% url 'updatelisting' listings.pk %}">update</a>
 

@@ -4,11 +4,13 @@ from django.http import HttpResponse
 from .models import Listing
 from .forms import ListingForm
 from django.shortcuts import render, redirect
+from .filters import ListingFilter
 
 def index(request):
     listings = Listing.objects.all()
+    listing_filter = ListingFilter(request.GET, queryset=listings)
     context = {
-        'listings': listings
+        'listing_filter' : listing_filter
     }
     return render(request, 'listings/index.html', context)
 
@@ -35,6 +37,7 @@ def createlisting(request):
             }
     return render(request, 'listings/listing_form.html', context)
 
+
 def updatelisting(request, pk):
     listing = Listing.objects.get(id=pk)
     form = ListingForm(instance = listing)
@@ -49,3 +52,11 @@ def updatelisting(request, pk):
         'form': form
             }
     return render(request, 'listings/updatelisting.html', context)
+
+
+#favorites comes after user authentication
+def favorite(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.is_favorite = True
+    listing.save()
+    return render(request, 'listings/index.html', {'listing' : listing})
