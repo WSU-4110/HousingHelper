@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from .models import Listing
 from .forms import ListingForm, TestForm
 from django.shortcuts import render, redirect
+from .filters import ListingFilter
+
 from django.views.generic import ListView, TemplateView
 from django.db.models import Q # new
 
@@ -11,10 +13,14 @@ from django.db.models import Q # new
 def home(request):
     return render(request, 'home.html')
 
+
+
+
 def index(request):
     listings = Listing.objects.all()
+    listing_filter = ListingFilter(request.GET, queryset=listings)
     context = {
-        'listings': listings
+        'listing_filter' : listing_filter
     }
     return render(request, 'listings/index.html', context)
 
@@ -49,6 +55,7 @@ def deletelisting(request, pk):
     listing = Listing.objects.get(id=pk)
     listing.delete()
     return redirect('/')
+
 
 
 
@@ -90,3 +97,11 @@ def calcmortgage(request):
             return redirect('/')
     context = {'form': form}
     return render(request, 'listings/calc_form.html', context)
+
+
+#favorites comes after user authentication
+def favorite(request, pk):
+    listing = Listing.objects.get(id=pk)
+    listing.is_favorite = True
+    listing.save()
+    return render(request, 'listings/index.html', {'listing' : listing})

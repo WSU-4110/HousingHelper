@@ -12,10 +12,15 @@ urlpatterns = [
     path('listing/<int:pk>/', views.listing, name='listing-detail'),
     path('createlisting/', views.createlisting, name='createlisting'),
     path('updatelisting<int:pk>/', views.updatelisting, name='updatelisting'),
+    path('favorite<int:pk>/', views.favorite, name='favorite'),
     path('listing/<pk>/delete/', deletelisting),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
+<<<<<<< HEAD
     path('browselisting/', views.browselisting, name='browselisting'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('home/', HomePageView.as_view(), name='home'),
 
+=======
+    path('browselisting/', views.browselisting, name='browselisting')
+>>>>>>> yousif
 ]
