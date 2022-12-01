@@ -1,13 +1,22 @@
 {% extends 'main.html' %}
-
+{% load tailwind_filters %}
 {% block content %}
 
-<div>
+<div class="flex justify-center">
+<div class="w-1/2">
+	<div class="px-6 py-4">
+	<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Home Affordability Calculator </h1>
+	<h1 class="mb-4 text-4xl  tracking-tight leading-none text-gray-900 md:text-3xl lg:text-6xl text-black-500 text-center">Using the 26/36 Rule </h1>
+	
+
 	<form method="POST" action="">
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 	</form>
 	{{ form.media }}
+</div>
+
+</div>
 </div>
 
 {% endblock %}

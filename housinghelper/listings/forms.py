@@ -16,4 +16,5 @@ class TestForm(forms.Form):
     term = forms.IntegerField()
     amount = forms.DecimalField(
         widget=calculation.FormulaInput('(down_payment*price)/(term*interest_rate)') # <- using single math expression
-    )
+     #widget=calculation.FormulaInput('(0.28*price*term)+(down_payment)')
+        )
