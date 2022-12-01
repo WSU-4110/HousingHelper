@@ -40,26 +40,18 @@
           <div class="md:flex-1 px-2">
            
               <div class="h-64 md:h-80 rounded-lg  mb-4">
-                <div  class="h-64 md:h-80 rounded-lg  mb-4 flex items-center justify-center">
+                <div  class="h-64 md:h-80 rounded-lg  mb-4 flex items-center justify-center ">
                 
-                    <img src="{{ listing.image.url }}" width="1000px">  
+                  
+                    
+                    <img  src="{{ listing.image.url }}" width="1000px">  
                 </div>
 
               </div>
 
               <br>  
-              <a href="{% url 'updatelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
-              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
-              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Update listing
-                
-            </a>
-            <a href="{% url 'deletelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
-              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
-              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Delete listing
-                
-            </a>
+              
+              
             
             
           </div>
@@ -96,6 +88,18 @@
                 <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
                 focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
                  dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Contact Agent</button>
+                 <a href="{% url 'updatelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Update listing
+                
+            </a>
+            <a href="{% url 'deletelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Delete listing
+                
+            </a>
             </div>
           </div>
 
