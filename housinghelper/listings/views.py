@@ -1,14 +1,33 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
 from django.http import HttpResponse
 from .models import Listing
-from .forms import ListingForm, TestForm
+from .forms import ListingForm, TestForm, CreateUserForm
 from django.shortcuts import render, redirect
 from .filters import ListingFilter
 from .filters import ListingFilter
 
 from django.views.generic import ListView, TemplateView
 from django.db.models import Q # new
+
+
+def registerpage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+                        
+    context = {'form':form}
+    return render(request, 'listings/register.html', context)
+
+
+def loginpage(request):
+    context = {}
+    return render(request, 'listings/login.html', context)
 
 
 def home(request):

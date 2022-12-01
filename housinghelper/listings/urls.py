@@ -7,6 +7,9 @@ from django.conf import settings
 from .views import SearchResultsView, HomePageView
 
 urlpatterns = [
+    path('register/', views.registerpage, name="register"),
+    path('login/', views.loginpage, name="login"),
+
     path('', views.index, name='index'),
     #path('listings', views.listings, name='listings'),
     path('listing/<int:pk>/', views.listing, name='listing-detail'),
