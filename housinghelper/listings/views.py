@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from django.http import HttpResponse
@@ -14,20 +19,51 @@ from django.db.models import Q # new
 
 
 def registerpage(request):
-    form = CreateUserForm()
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        form = CreateUserForm()
 
-    if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-                        
-    context = {'form':form}
-    return render(request, 'listings/register.html', context)
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account is created for ' + user)
+                return redirect('login')
+                            
+        context = {'form':form}
+        return render(request, 'listings/register.html', context)
 
 
 def loginpage(request):
-    context = {}
-    return render(request, 'listings/login.html', context)
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:
+                messages.info(request, 'Username or Password is incorrect')
+
+        context = {}
+        return render(request, 'listings/login.html', context)
+
+def logoutUser(request):
+        logout(request)
+        return redirect('login')
+
+
+
+# def loginPage(request):
+#     return render(request, 'listings/login_register.html')
+
 
 
 def home(request):
@@ -122,6 +158,7 @@ def calcmortgage(request):
 
 
 #favorites comes after user authentication
+#@login_required(login_url ='login')   
 def favorite(request, pk):
     listing = Listing.objects.get(id=pk)
     listing.is_favorite = True
