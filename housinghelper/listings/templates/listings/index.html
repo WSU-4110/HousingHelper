@@ -15,63 +15,11 @@
 {% block content %}
 
 
+
 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Welcome to Housing Helper</h1>
 
 {% include 'search_comp.html' %}
  
-
-<!-- 4 cards -->
-<div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">  
-  <!--Card 1-->
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-    <a href="{% url 'browselisting' %}"><img class="w-full" src="../../../media/images/house_3.jpeg" alt="Mountain">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Browse All Listing</div>
-      <p class="text-gray-700 text-base">
-     Check out a variety of house listings </p>
-    </div>
-  </a>
-  </div>
-
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-   
-    <a href="#"> <img class="w-full" src="../../../media/rent house.jpg" alt="Mountain">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Rent houses</div>
-      <p class="text-gray-700 text-base">
-        Navagates to all Houses for Rent
-      </p>
-    </div>
-    </a>
-  </div>
-
-
-
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-    <a href="#"><img class="w-full" src="../../../media/sale house.jpg" alt="Mountain">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Buy House</div>
-      <p class="text-gray-700 text-base">
-        Browse all houses for sale!
-      </p>
-    </div>
-
-    </a>
-    
-
-    
-  </div>
-  
-</div>
-<p  style="text-align: center;"> 
-<iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.220553878923!2d-83.07103086589538!3d42.35913871261652!2m3!1f0!2f0!3f0!3m2!1i1024!2i76
-8!4f13.1!3m3!1m2!1s0x8824d2bc9d42d843%3A0xb688968949df5e4e!2sWayne%20State%20University!5e0!3m2!1sen!2sus!4v1669569114892!5m2!1sen!2sus" width="900" height="450" 
-style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-</p>
-
-
-
 
 {% endblock %}
 

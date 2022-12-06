@@ -9,6 +9,8 @@ from .views import SearchResultsView, HomePageView
 urlpatterns = [
     path('register/', views.registerpage, name="register"),
     path('login/', views.loginpage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
+
 
     path('', views.index, name='index'),
     #path('listings', views.listings, name='listings'),

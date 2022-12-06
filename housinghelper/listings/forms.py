@@ -8,7 +8,7 @@ import calculation
 class ListingForm(ModelForm):
     class Meta:
         model = Listing
-        fields = ('title', 'description', 'price', 'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size','image','choice')
+        fields = ('title', 'description', 'price', 'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size','image','choice','housing_type')
 
 
 class CreateUserForm(UserCreationForm):
