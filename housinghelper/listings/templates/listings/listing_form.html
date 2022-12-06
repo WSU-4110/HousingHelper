@@ -2,11 +2,15 @@
 {% load tailwind_filters %}
 {% load static %}
 {% block content %}
+<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Add Listing</h1>
+
+
+{% if user.is_authenticated %}
 
 <div class="flex justify-center">
-	<div class="w-1/2">
-		<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Add Listing</h1>
 
+	<div class="w-1/2">
+		
 		<div class="px-6 py-4">
 		
 		 
@@ -14,7 +18,8 @@
 
 		{% csrf_token %}
 		{{ form|crispy }}
-		<input type="submit" value="Submit">
+		<a href="{% url 'browselisting' %}">
+			<input type="submit" value="Submit"> </a>
 	</form>
 	<br>
 		<i class="text-gray-700 text-base">
@@ -23,8 +28,33 @@
 	  </div>
 	  
 	</div>
-   </div>
+</div>
   
+{% else %}
+
+<div class="flex justify-center">
+	<div class="w-1/2">
+		<div class="px-6 py-4">
+			<h1 class="mb-4 text-4xl  tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Please login to add a listing</h1>
+
+			<div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+				
+				
+			  <a href="{% url 'login' %}">
+			<button
+              type="button"
+              class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg 
+			  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" >
+              Login
+            </button>
+				</a>
+			</div>
+		</div>
+	</div>
+
+{% endif %}
+
+
 
 {% endblock %}
  
