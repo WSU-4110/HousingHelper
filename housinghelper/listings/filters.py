@@ -9,6 +9,11 @@ class ListingFilter(django_filters.FilterSet):
         fields = {'price' : ['lte'], 
         'bedrooms' : ['gte'],
         'bathrooms' : ['gte'],
-        'garage' : ['gte']}
+        'garage' : ['gte'],
+        'sqft' : ['gte'],
+        'lot_size' : ['gte'],
+        'choice' : ['exact'],
+        'housing_type' : ['exact'],
+        }
 
         

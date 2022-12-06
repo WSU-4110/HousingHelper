@@ -73,7 +73,13 @@
             </div>
     
             <p class="text-gray-500">{{ listing.description }} <br>
-                This house is currently listed as <text class="text-black-500 font-semibold">{{listing.choice}}</text> <br>
+                This <text class="text-black-900 text-xl font-bold">
+                  {%if listing.housing_type %}
+                  {{listing.housing_type}}
+                  {%else%}
+                  House
+                  {%endif%}
+                </text> is currently listed as <text class="text-black-500 font-semibold">{{listing.choice}}</text> <br>
                 <text>Garage: {{ listing.garage }}</text> <br>
                 <text>Area {{ listing.sqft}} ft<sup>2</sup></text> <br>
                 <text>Lot Size: {{ listing.lot_size }}</text> <br>
