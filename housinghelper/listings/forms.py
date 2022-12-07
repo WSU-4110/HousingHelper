@@ -17,13 +17,12 @@ class CreateUserForm(UserCreationForm):
         fields = ('username', 'password1', 'password2')
 
 
-
+# widget=calculation.FormulaInput('loan_total*(((interest_rate)*(1+interest_rate)^loan_term)/(1+interest_rate)^(loan_term - 1))') # <- using single math expression
 class TestForm(forms.Form):
-    down_payment = forms.DecimalField()
-    price = forms.DecimalField()
-    interest_rate = forms.DecimalField()
-    term = forms.IntegerField()
+    loan_total = forms.IntegerField()
+    interest_rate = forms.FloatField()
+    loan_term = forms.IntegerField()
     amount = forms.DecimalField(
-        widget=calculation.FormulaInput('(down_payment*price)/(term*interest_rate)') # <- using single math expression
+            widget= calculation.FormulaInput('loan_total*(((interest_rate)*(1+interest_rate)^loan_term)/(1+interest_rate)^(loan_term - 1))') # <- using single math expression
      #widget=calculation.FormulaInput('(0.28*price*term)+(down_payment)')
-        )
+    )
