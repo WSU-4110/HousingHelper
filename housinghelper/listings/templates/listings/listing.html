@@ -73,35 +73,50 @@
             </div>
     
             <p class="text-gray-500">{{ listing.description }} <br>
-                This house is currently listed as <text class="text-black-500 font-semibold">{{listing.choice}}</text> <br>
+                This <text class="text-black-900 text-xl font-bold">
+                  {%if listing.housing_type %}
+                  {{listing.housing_type}}
+                  {%else%}
+                  House
+                  {%endif%}
+                </text> is currently listed as <text class="text-black-500 font-semibold">{{listing.choice}}</text> <br>
                 <text>Garage: {{ listing.garage }}</text> <br>
                 <text>Area {{ listing.sqft}} ft<sup>2</sup></text> <br>
                 <text>Lot Size: {{ listing.lot_size }}</text> <br>
             </p>
             
 
+            {% if user.is_authenticated %}
+ 
 
-            <div class="flex py-4 space-x-4">
-              <div class="relative">
-                
     
-                <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
-                focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
-                 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Contact Agent</button>
-                 <a href="{% url 'updatelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
-              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
-              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Update listing
-                
-            </a>
-            <a href="{% url 'deletelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
-              focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
-              dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-                Delete listing
-                
-            </a>
-            </div>
-          </div>
+            <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+            focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+             dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Contact Agent</button>
+
+
+            
+             <a href="{% url 'updatelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+          focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+          dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+            Update listing
+            
+        </a>
+        <a href="{% url 'deletelisting' listing.pk %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+          focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+          dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+            Delete listing
+            
+        </a>
+        {% else %}
+        <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none 
+            focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800
+             dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Contact Agent</button>
+
+             
+        </div>
+      </div>
+            {% endif %}
 
           
         </div>

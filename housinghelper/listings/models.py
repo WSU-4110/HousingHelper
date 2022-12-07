@@ -17,5 +17,9 @@ class Listing(models.Model):
     image=models.ImageField(null=True,blank=True, upload_to="images/")
     option=(('Selling', 'Selling'),('Renting', 'Renting'))
     choice= models.CharField(max_length=10,choices=option,null=True,blank=True)
+    housing_option=(('House', 'House'),('Apartment', 'Apartment'),('Condo', 'Condo'),('Townhouse', 'Townhouse'))
+    housing_type= models.CharField(max_length=10,choices=housing_option,null=True,blank=True)
+
+
     def __str__(self):
         return self.title
