@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 from django.http import HttpResponse
@@ -16,7 +16,28 @@ from .filters import ListingFilter
 
 from django.views.generic import ListView, TemplateView
 from django.db.models import Q # new
+from django.contrib.auth.models import User
 
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required
+def createuser(request):
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'listings/createuser.html', context)
+
+def listusers(request):
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'listings/listusers.html', context)
 
 def registerpage(request):
     if request.user.is_authenticated:
