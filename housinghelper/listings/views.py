@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth import authenticate, login, logout
@@ -104,11 +104,14 @@ def index(request):
 
 def listing(request, pk):
     listing = Listing.objects.get(id=pk)
+   
+   
     context = {
         'listing': listing
+        
     }
     return render(request, 'listings/listing.html', context)
-
+    
 def createlisting(request):
     form = ListingForm()
 
@@ -204,9 +207,31 @@ def calcmortgage(request):
 
 
 #favorites comes after user authentication
-#@login_required(login_url ='login')   
-def favorite(request, pk):
-    listing = Listing.objects.get(id=pk)
-    listing.is_favorite = True
-    listing.save()
-    return render(request, 'listings/index.html', {'listing' : listing})
+@ login_required
+def favoriteHouse(request, pk):
+    Listing = get_object_or_404(Listing, pk=pk)
+    if Listing.favorite.filter(pk=request.user.pk).exists():
+        Listing.favorite.remove(request.user)
+    else:
+        Listing.favorite.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@ login_required
+def favoriteList(request):
+    favList=Listing.objects.all()
+
+
+    favList = favList.filter(favorite=True)
+
+    listing_filter = ListingFilter(request.GET, queryset=favList)
+    context = {
+        'listing_filter' : listing_filter
+    }
+
+    return render(request, 'listings/favorites.html', context)
+
+
+
+ 
+ 
+   

@@ -54,7 +54,13 @@
   <div class="flex justify-center">
     <div class="w-1/2">
       <div class="bg-white shadow-md rounded my-6">
-        <a href="{% url 'listing-detail' listings.pk %}"> <img class="w-full" src="{{ listings.image.url  }}" alt="Sunset in the mountains"></a>
+        <a href="{% url 'listing-detail' listings.pk %}"> 
+          {% if listings.image %}
+          <img class="w-full" src="{{ listings.image.url  }}"
+            alt="Sunset in the mountains"> </a>
+    {% endif %}
+          
+         
         <div class="px-6 py-4">
           <div class="flow-root">  
             <a href="{% url 'listing-detail' listings.pk %}">  
