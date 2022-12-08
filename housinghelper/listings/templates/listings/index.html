@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
 </head>
+
 <body>
   
 {% extends 'main.html' %}
-
+{%load static%}
 {% block content %}
 
 
-
-<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Welcome to Housing Helper</h1>
+<br>
+<br>
+<br>
+<h1 class="mb-5 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Welcome to Housing Helper</h1>
 
 {% include 'search_comp.html' %}
  
