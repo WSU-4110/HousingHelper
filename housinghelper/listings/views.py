@@ -232,6 +232,23 @@ def favoriteList(request):
 
 
 
- 
+def houseamount(request):
+    
+    allobj=Listing.objects.all()
+
+    if request.method == 'POST':
+        totalCost=request.POST.get('Total_cost_over_term')
+
+        
+        
+        totalCost=float(totalCost)
+        allobj = allobj.filter(price__lte=totalCost)
+    
+    allobj=allobj.filter(choice='Selling')
+    listing_filter = ListingFilter(request.GET, queryset=allobj)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/calc_result.html', context)
  
    

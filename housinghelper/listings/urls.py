@@ -24,7 +24,7 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('home/', HomePageView.as_view(), name='home'),
     path('favoriteList/', views.favoriteList, name='favoriteList'),
-
+    path('houseamount/', views.houseamount, name='houseamount'),
     path('browselisting/', views.browselisting, name='browselisting'),
     path('rentlisting/', views.rentlisting, name='rentlisting'),
     path('selllisting/', views.selllisting, name='selllisting'),
