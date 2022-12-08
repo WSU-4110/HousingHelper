@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth import authenticate, login, logout
@@ -104,11 +104,16 @@ def index(request):
 
 def listing(request, pk):
     listing = Listing.objects.get(id=pk)
+    post = get_object_or_404(Listing, pk=pk)
+    is_fav = False
+    if post.favorite.filter(pk=request.user.pk).exists():
+        is_fav = True
     context = {
-        'listing': listing
+        'listing': listing,
+        'is_fav': is_fav
     }
     return render(request, 'listings/listing.html', context)
-
+    
 def createlisting(request):
     form = ListingForm()
 
@@ -179,9 +184,25 @@ def calcmortgage(request):
 
 
 #favorites comes after user authentication
-#@login_required(login_url ='login')   
-def favorite(request, pk):
-    listing = Listing.objects.get(id=pk)
-    listing.is_favorite = True
-    listing.save()
-    return render(request, 'listings/index.html', {'listing' : listing})
+@ login_required
+def favoriteHouse(request, pk):
+    Listing = get_object_or_404(Listing, pk=pk)
+    if Listing.favorite.filter(pk=request.user.pk).exists():
+        Listing.favorite.remove(request.user)
+    else:
+        Listing.favorite.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@ login_required
+def favoriteList(request):
+    #user = request.user
+    #favoriteList = user.favorite.all()
+    favList = Listing.favorite.all()
+    favoriteList = favList(request.user, queryset=favorite)
+    context = {
+        'favoriteList' : favoriteList
+    }
+    return render(request, 'listings/favorites.html', context)
+ 
+ 
+   
