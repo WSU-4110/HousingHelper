@@ -1,13 +1,77 @@
 {% extends 'main.html' %}
 {% load tailwind_filters %}
+
 {% block content %}
 
 <div class="flex justify-center">
 <div class="w-1/2">
+
+
+
+		
 	<div class="px-6 py-4">
+
+		
 	<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Home Affordability Calculator </h1>
-	<h1 class="mb-4 text-4xl  tracking-tight leading-none text-gray-900 md:text-3xl lg:text-6xl text-black-500 text-center">Using the 26/36 Rule </h1>
+	<h1 class="mb-4 text-4xl  tracking-tight leading-none text-gray-900 md:text-3xl lg:text-6xl text-black-500 text-center">Using <a href="https://www.mymove.com/mortgage/mortgage-calculation/#:~:text=These%20factors%20include%20the%20total,)%5En%20%E2%80%93%201%5D">MyMove™ </a> </h1>
 	
+	<div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+		<div class="overflow-hidden">
+		  <table class="min-w-full">
+			<thead class="border-b">
+			  <tr>
+				<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+				  
+				</th>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					
+				  </td>
+				  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					
+				  </td>
+				
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr class="border-b">
+				<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+				 Loan Total
+				</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+				  Total amount of your loan (in dollars)
+				</td>
+				
+			  </tr>
+			  <tr class="bg-white border-b">
+				<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					Interest Rate
+				</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					Your interest rate (in decimal form)
+				</td>
+				
+			  </tr>
+			  <tr class="bg-white border-b">
+				<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					Loan Term 
+				</td>
+				<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+					The total amount of months in your timeline for paying off your mortgage (months)
+				</td>
+				
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	<div class="grid place-items-center">
+		
+	  </div>
+
+
 
 	<form method="POST" action="">
 		{% csrf_token %}
@@ -18,5 +82,8 @@
 
 </div>
 </div>
+
+
+
 
 {% endblock %}
