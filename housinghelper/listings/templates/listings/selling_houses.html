@@ -1,48 +1,13 @@
 
 {% extends 'main.html' %}
+{% load tailwind_filters %}
 
 {% block content %}
 
-
-
-<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">Browse All House Listings</h1>
-
-<br>
 <br>
 
-<div class="flex justify-center">
 
-<div class="">
-  <!--Card 1-->
-
-  <div class="rounded overflow-hidden shadow-lg">
-
-    <div class="px-6 py-4">
-      
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Filters</h5>
-          <form method="get">
-            {{ listing_filter.form.as_p }}
-            <br>
-            <button class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="submit"> Submit
-            <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-        </form>
-  <br>
-      <i class="text-gray-700 text-base">
-        Search Filters
-      </i>
-    </div>
-    <div class="px-6 pt-4 pb-2">
-      
-    </div>
-  </div>
- 
-</div>
-
-</div>
-
-
+<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl text-black-600 text-center">All Listing for Sale</h1>
 
 
 
@@ -54,13 +19,7 @@
   <div class="flex justify-center">
     <div class="w-1/2">
       <div class="bg-white shadow-md rounded my-6">
-        <a href="{% url 'listing-detail' listings.pk %}"> 
-          {% if listings.image %}
-          <img class="w-full" src="{{ listings.image.url  }}"
-            alt="Sunset in the mountains"> </a>
-    {% endif %}
-          
-         
+        <a href="{% url 'listing-detail' listings.pk %}"> <img class="w-full" src="{{ listings.image.url  }}" alt="Sunset in the mountains"></a>
         <div class="px-6 py-4">
           <div class="flow-root">  
             <a href="{% url 'listing-detail' listings.pk %}">  
@@ -97,4 +56,5 @@
 {% endfor %}
 
 
-{% endblock %}
+
+{%endblock%}

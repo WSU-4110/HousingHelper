@@ -9,6 +9,7 @@ class ListingForm(ModelForm):
     class Meta:
         model = Listing
         fields = ('title', 'description', 'price', 'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size','image','choice','housing_type')
+        exclude = ['favorites']
 
 
 class CreateUserForm(UserCreationForm):

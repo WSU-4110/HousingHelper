@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth import authenticate, login, logout
@@ -104,11 +104,14 @@ def index(request):
 
 def listing(request, pk):
     listing = Listing.objects.get(id=pk)
+   
+   
     context = {
         'listing': listing
+        
     }
     return render(request, 'listings/listing.html', context)
-
+    
 def createlisting(request):
     form = ListingForm()
 
@@ -130,7 +133,32 @@ def browselisting(request):
     }
     return render(request, 'listings/browse_houses.html', context)
  
+def rentlisting(request):
+    
+    rent_listings=Listing.objects.all()
+
+
+    rent_listings = rent_listings.filter(choice='Renting')
+
+    listing_filter = ListingFilter(request.GET, queryset=rent_listings)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/renting_houses.html', context)
    
+def selllisting(request):
+    
+    sell_listings=Listing.objects.all()
+
+
+    sell_listings = sell_listings.filter(choice='Selling')
+
+    listing_filter = ListingFilter(request.GET, queryset=sell_listings)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/selling_houses.html', context)
+
 
 def deletelisting(request, pk):
     listing = Listing.objects.get(id=pk)
@@ -179,9 +207,48 @@ def calcmortgage(request):
 
 
 #favorites comes after user authentication
-#@login_required(login_url ='login')   
-def favorite(request, pk):
-    listing = Listing.objects.get(id=pk)
-    listing.is_favorite = True
-    listing.save()
-    return render(request, 'listings/index.html', {'listing' : listing})
+@ login_required
+def favoriteHouse(request, pk):
+    Listing = get_object_or_404(Listing, pk=pk)
+    if Listing.favorite.filter(pk=request.user.pk).exists():
+        Listing.favorite.remove(request.user)
+    else:
+        Listing.favorite.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@ login_required
+def favoriteList(request):
+    favList=Listing.objects.all()
+
+
+    favList = favList.filter(favorite=True)
+
+    listing_filter = ListingFilter(request.GET, queryset=favList)
+    context = {
+        'listing_filter' : listing_filter
+    }
+
+    return render(request, 'listings/favorites.html', context)
+
+
+
+def houseamount(request):
+    
+    allobj=Listing.objects.all()
+
+    if request.method == 'POST':
+        totalCost=request.POST.get('Total_cost_over_term')
+
+        
+        
+        totalCost=float(totalCost)
+        allobj = allobj.filter(price__lte=totalCost)
+    
+    allobj=allobj.filter(choice='Selling')
+    listing_filter = ListingFilter(request.GET, queryset=allobj)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/calc_result.html', context)
+ 
+   

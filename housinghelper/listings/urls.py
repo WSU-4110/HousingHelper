@@ -17,15 +17,17 @@ urlpatterns = [
     path('listing/<int:pk>/', views.listing, name='listing-detail'),
     path('createlisting/', views.createlisting, name='createlisting'),
     path('updatelisting<int:pk>/', views.updatelisting, name='updatelisting'),
-    path('favorite<int:pk>/', views.favorite, name='favorite'),
+    path('listing/<int:pk>/', views.favoriteHouse, name='favoriteHouse'),
     path('listing/<pk>/delete/', views.deletelisting, name="deletelisting"),
     path('calcmortgage/', views.calcmortgage, name='calcmortgage'),
     path('browselisting/', views.browselisting, name='browselisting'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('home/', HomePageView.as_view(), name='home'),
-
+    path('favoriteList/', views.favoriteList, name='favoriteList'),
+    path('houseamount/', views.houseamount, name='houseamount'),
     path('browselisting/', views.browselisting, name='browselisting'),
-
+    path('rentlisting/', views.rentlisting, name='rentlisting'),
+    path('selllisting/', views.selllisting, name='selllisting'),
     path('createuser/', views.createuser, name='createuser'),
     path('listusers/', views.listusers, name='listusers'),
 ]

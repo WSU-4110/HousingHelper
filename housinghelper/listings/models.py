@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -19,7 +20,7 @@ class Listing(models.Model):
     choice= models.CharField(max_length=10,choices=option,null=True,blank=True)
     housing_option=(('House', 'House'),('Apartment', 'Apartment'),('Condo', 'Condo'),('Townhouse', 'Townhouse'))
     housing_type= models.CharField(max_length=10,choices=housing_option,null=True,blank=True)
-
+    favorite = models.BooleanField( default=False)
 
     def __str__(self):
         return self.title
