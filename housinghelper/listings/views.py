@@ -130,7 +130,32 @@ def browselisting(request):
     }
     return render(request, 'listings/browse_houses.html', context)
  
+def rentlisting(request):
+    
+    rent_listings=Listing.objects.all()
+
+
+    rent_listings = rent_listings.filter(choice='Renting')
+
+    listing_filter = ListingFilter(request.GET, queryset=rent_listings)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/renting_houses.html', context)
    
+def selllisting(request):
+    
+    sell_listings=Listing.objects.all()
+
+
+    sell_listings = sell_listings.filter(choice='Selling')
+
+    listing_filter = ListingFilter(request.GET, queryset=sell_listings)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, 'listings/selling_houses.html', context)
+
 
 def deletelisting(request, pk):
     listing = Listing.objects.get(id=pk)

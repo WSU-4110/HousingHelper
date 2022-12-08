@@ -25,7 +25,8 @@ urlpatterns = [
     path('home/', HomePageView.as_view(), name='home'),
 
     path('browselisting/', views.browselisting, name='browselisting'),
-
+    path('rentlisting/', views.rentlisting, name='rentlisting'),
+    path('selllisting/', views.selllisting, name='selllisting'),
     path('createuser/', views.createuser, name='createuser'),
     path('listusers/', views.listusers, name='listusers'),
 ]
