@@ -11,7 +11,7 @@ from django.db.models import Q # new
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from listings.views import home, index, listing,SearchResultsView,HomePageView, createlisting, updatelisting, deletelisting, browselisting
-
+from listings.models import Listing
 
 
 class TestViews(TestCase):
@@ -28,6 +28,70 @@ class TestViews(TestCase):
         page = self.client.get("/home/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "search_listing.html")
+
+    def test_get_create_page(self):
+        page = self.client.get("/create/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/create.html")
+
+    def test_get_update_page(self):
+        page = self.client.get("/update/1")
+        self.assertEqual(page.status_code, 301)
+
+
+    def test_get_delete_page(self):
+        page = self.client.get("/deletelisting/1")
+        self.assertEqual(page.status_code, 301)
+
+    def test_get_browse_page(self):
+        page = self.client.get("/browse/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/browse.html")
+
+
+    def test_get_createuser_page(self):
+        page = self.client.get("/createuser/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/createuser.html")
+
+
+   
+
+
+    def test_get_renting_page(self):
+        page = self.client.get("/renting/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/renting.html")
+
+
+    def test_get_selling_page(self):
+        page = self.client.get("/selling/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/selling.html")
+
+    def test_get_favoriteList_page(self):
+        page = self.client.get("/favoriteList/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/favoriteList.html")
+
+    def test_get_houseamount_page(self):
+        page = self.client.get("/houseamount/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/houseamount.html")
+
+    def test_get_login_page(self):
+        page = self.client.get("/login/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/login.html")
+
+    def test_get_signup_page(self):
+        page = self.client.get("/signup/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "listings/signup.html")
+
+
+
+        
 
 
     def test_listing_model(self):
@@ -115,6 +179,14 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func.view_class, HomePageView)
         print("testing home url...")
         print(resolve(url))
+
+
+    def test_deletelisting(self):
+        url = reverse('deletelisting', args=['1'])
+        self.assertEquals(resolve(url).func, deletelisting)
+        print("testing deletelisting url...")
+        print(resolve(url))
+        
 
     
    
