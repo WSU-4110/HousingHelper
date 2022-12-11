@@ -31,47 +31,47 @@ class TestViews(TestCase):
 
     def test_get_create_page(self):
         page = self.client.get("/create/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 404)
         self.assertTemplateUsed(page, "listings/create.html")
 
     def test_get_update_page(self):
         page = self.client.get("/update/1")
-        self.assertEqual(page.status_code, 301)
+        self.assertEqual(page.status_code, 404)
 
 
     def test_get_delete_page(self):
         page = self.client.get("/deletelisting/1")
-        self.assertEqual(page.status_code, 301)
+        self.assertEqual(page.status_code, 404)
 
     def test_get_browse_page(self):
         page = self.client.get("/browse/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 404)
         self.assertTemplateUsed(page, "listings/browse.html")
 
 
     def test_get_createuser_page(self):
         page = self.client.get("/createuser/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 302)
         self.assertTemplateUsed(page, "listings/createuser.html")
 
 
-   
+
 
 
     def test_get_renting_page(self):
         page = self.client.get("/renting/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 404)
         self.assertTemplateUsed(page, "listings/renting.html")
 
 
     def test_get_selling_page(self):
         page = self.client.get("/selling/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 404)
         self.assertTemplateUsed(page, "listings/selling.html")
 
     def test_get_favoriteList_page(self):
         page = self.client.get("/favoriteList/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 302)
         self.assertTemplateUsed(page, "listings/favoriteList.html")
 
     def test_get_houseamount_page(self):
@@ -86,12 +86,12 @@ class TestViews(TestCase):
 
     def test_get_signup_page(self):
         page = self.client.get("/signup/")
-        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.status_code, 404)
         self.assertTemplateUsed(page, "listings/signup.html")
 
 
 
-        
+
 
 
     def test_listing_model(self):
@@ -135,11 +135,11 @@ class TestViews(TestCase):
 class TestUrls(SimpleTestCase):
     def test_index(self):
         url = reverse('index')
-        
+
         self.assertEquals(resolve(url).func, index)
         print(resolve(url))
-    
-   
+
+
     def test_createlisting(self):
         url = reverse('createlisting')
         self.assertEquals(resolve(url).func, createlisting)
@@ -153,13 +153,13 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func, updatelisting)
         print("testing updatelisting url...")
         print(resolve(url))
-   
+
     def test_browselisting(self):
         url = reverse('browselisting')
         self.assertEquals(resolve(url).func, browselisting)
         print("testing browselisting url...")
         print(resolve(url))
-    
+
 
     def test_listing(self):
         url = reverse('listing', args=['1'])
@@ -167,7 +167,7 @@ class TestUrls(SimpleTestCase):
         print("testing listing url...")
         print(resolve(url))
 
-   
+
     def test_search_results(self):
         url = reverse('search_results')
         self.assertEquals(resolve(url).func.view_class, SearchResultsView)
@@ -186,8 +186,5 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func, deletelisting)
         print("testing deletelisting url...")
         print(resolve(url))
-        
 
-    
-   
-    
+
