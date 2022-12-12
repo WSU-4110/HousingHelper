@@ -1,16 +1,21 @@
-This project is a web based application which will help you purchase your next house!
+PURPOSE:
 
+This site is meant to be used for buying/renting/selling houses and doing research on the housing market. 
 
-# SETUP
+It is also meant for Figuring out what houses you can afford and what mortgage you can get.
 
-1) clone the repo
+FUNCTIONALITY:
 
-2) run 
-```
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
-```
+-CRUD actions
 
+-Authentication
 
+-Search
 
+-Filtering
+
+-Mortgage calculation
+
+-Browse houses
+
+-Favoriting houses
